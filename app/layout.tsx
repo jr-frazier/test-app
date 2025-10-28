@@ -1,22 +1,5 @@
 import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
-
-declare global {
-    interface Window {
-        dcMicroFrontendLoader: {
-            init: (config: Array<{
-                microapp: string;
-                microappUrl: string;
-                containerId?: string;
-            }>) => void;
-        };
-        appswitcher?: {
-            mount: (containerId: string, config: { configUrl: string }) => void;
-        };
-    }
-}
 
 
 export const metadata: Metadata = {
@@ -29,23 +12,6 @@ export default function RootLayout({
                                    }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en">
-        <head>
-            <Script src="/dc_MFLoader.js" strategy="beforeInteractive"/>
-            <Script id="init-minicart" strategy="afterInteractive">
-                {`
-          dcMicroFrontendLoader.init([
-            { microapp: 'appswitcher', microappUrl: '/mfe/' }
-          ]);
-        `}
-            </Script>
-            {/*    <Script id="init-minicart" strategy="afterInteractive">*/}
-            {/*        {`*/}
-            {/*  dcMicroFrontendLoader.init([*/}
-            {/*    { microapp: 'appswitcher', microappUrl: 'https://accounts.stage.az.digicert.net' }*/}
-            {/*  ]);*/}
-            {/*`}*/}
-            {/*    </Script>*/}
-        </head>
         <body className={"bg-white"}>
         {children}
         </body>
