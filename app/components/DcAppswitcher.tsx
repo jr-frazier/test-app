@@ -47,18 +47,8 @@
 'use client'
 
 import {useEffect} from 'react'
-import {useMicroFrontend} from '../hooks/MFELoader'
 
 export default function DcAppSwitcher() {
-    // Load and init the micro frontend
-    useMicroFrontend([
-        {
-            microapp: 'appswitcher',
-            // Use your proxy or absolute origin, e.g. '/mfe' or 'https://accounts.stage.az.digicert.net'
-            microappUrl: '/mfe',
-            containerId: 'appswitcher-container',
-        },
-    ])
 
     // Mount after assets expose window.appswitcher
     useEffect(() => {
